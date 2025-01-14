@@ -3,15 +3,25 @@ let isDragging = false;
 let startY;
 let scrollTop;
 
-// Clone the first and last set of images for continuous looping
-const firstClone = gallery.children[0].cloneNode(true);
-const lastClone = gallery.children[gallery.children.length - 1].cloneNode(true);
+// Adjust scaling based on image position
+function adjustImageSizes() {
+    const images = document.querySelectorAll('.gallery div img');
+    const galleryCenter = gallery.offsetHeight / 2;
 
-gallery.appendChild(firstClone); // Add first clone to the end
-gallery.insertBefore(lastClone, gallery.children[0]); // Add last clone to the beginning
+    images.forEach((img) => {
+        const imgRect = img.getBoundingClientRect();
+        const imgCenter = imgRect.top + imgRect.height / 2;
+        const distance = Math.abs(galleryCenter - imgCenter);
 
-// Reset the scroll to show the first set after cloning
-gallery.scrollTop = gallery.clientHeight;
+        if (distance < imgRect.height) {
+            img.classList.add('active');
+            img.classList.remove('small');
+        } else {
+            img.classList.add('small');
+            img.classList.remove('active');
+        }
+    });
+}
 
 // Dragging functionality for the carousel
 gallery.addEventListener('mousedown', (e) => {
@@ -38,22 +48,13 @@ gallery.addEventListener('mousemove', (e) => {
     const y = e.pageY - gallery.offsetTop;
     const distance = (y - startY) * 2; // Adjust scrolling speed
     gallery.scrollTop = scrollTop - distance;
+    adjustImageSizes();
 });
 
-// Event listener for automatic loop when scrolling reaches the first or last clone
+// Adjust image sizes on scroll
 gallery.addEventListener('scroll', () => {
-    if (gallery.scrollTop >= gallery.scrollHeight - gallery.clientHeight) {
-        gallery.scrollTop = gallery.clientHeight; // Jump back to the first original set
-    } else if (gallery.scrollTop <= 0) {
-        gallery.scrollTop = gallery.scrollHeight - 2 * gallery.clientHeight; // Jump back to the last original set
-    }
+    adjustImageSizes();
 });
 
-// Next and Back buttons for manual scrolling
-document.querySelector("#nextbtn").addEventListener("click", () => {
-    gallery.scrollTop += gallery.clientHeight; // Scroll down by one set of images
-});
-
-document.querySelector("#backbtn").addEventListener("click", () => {
-    gallery.scrollTop -= gallery.clientHeight; // Scroll up by one set of images
-});
+// Initial adjustment
+adjustImageSizes();

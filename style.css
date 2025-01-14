@@ -5,44 +5,55 @@
     font-family: 'Poppins', sans-serif;
 }
 body {
-    background: #191919;
+    background: rgb(131,58,180);
+    /* background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%); */
+    background: linear-gradient(90deg,rgba(252,176,69,1) 0%, rgba(253,29,29,1) 50%,rgba(131,58,180,1)  100%);
 }
 .gallery {
-    width: 300px; /* Width for the vertical layout */
-    height: 600px; /* Height for the vertical slider */
+    width: 400px; /* Adjust width as needed */
+    height: 100%; /* Full height */
     display: flex;
-    flex-direction: column; /* Arrange items vertically */
-    overflow-y: auto; /* Enable vertical scrolling */
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    transition: transform 0.3s ease;
+    flex-direction: column; /* Vertical layout */
+    overflow-y: hidden; /* Hide default scrollbar */
+    position: relative;
 }
 .gallery div {
-    display: grid;
-    grid-template-rows: auto auto auto; /* Arrange images in rows */
-    grid-gap: 20px;
-    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    height: 100%;
+    position: relative;
 }
-.gallery div img {
-    width: 100%;
-    transition: transform 0.5s;
-}
-.gallery div img:hover {
-    filter: grayscale(0);
-    cursor: pointer;
-    transform: scale(1.5);
-}
-.gallery::-webkit-scrollbar {
-    display: none;
-}
-.gallery-wrap {
+.gallery div span {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 10% auto;
+    transition: transform 0.3s, filter 0.3s;
 }
-#backbtn, #nextbtn {
-    width: 50px;
-    cursor: pointer;
-    margin: 40px;
+.gallery div img {
+    width: 80%;
+    height: auto;
+    max-height: 275px;
+    object-fit: cover;
+    transition: transform 0.5s, filter 0.5s;
+}
+.gallery div img.active {
+    transform: scale(1.2);
+    z-index: 2;
+    filter: brightness(1.2);
+}
+.gallery div img.small {
+    transform: scale(0.8);
+    z-index: 1;
+    filter: brightness(1.2);
+}
+.gallery-wrap {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
