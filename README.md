@@ -25,6 +25,7 @@ The gradient background and smooth transitions make the UI appealing.
 <h2>Future Improvements</h2>
 
 -Include thumbnails, autoplay functionality, or progress indicators to enhance the user interface.
+
 -Host required assets (e.g., Swiper.js and its CSS) locally or use service workers for better offline performance.
 
 
