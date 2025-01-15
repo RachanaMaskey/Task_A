@@ -1,4 +1,5 @@
 var swiper=new Swiper(".swiper",{
+    direction: "vertical", 
     effect:"coverflow",
     grabCursor:true,
     centeredSlides:true,
@@ -6,7 +7,7 @@ var swiper=new Swiper(".swiper",{
         rotate: 0,
         stretch: 0,
         depth: 100,
-        modifier: 4,
+        modifier: 3,
         slideShadows: true 
     },
     loop:true,
@@ -22,7 +23,7 @@ var swiper=new Swiper(".swiper",{
     },
     breakpoints: {
         0: {
-            slidesPerView: 2.5
+            slidesPerView: 2
         },
         768: {
             slidesPerView: 3
