@@ -29,5 +29,5 @@ The gradient background and smooth transitions make the UI appealing.
 -Host required assets (e.g., Swiper.js and its CSS) locally or use service workers for better offline performance.
 
 
-<h2>Link of demo videa of Task A</h2>
+<h2>Link of demo video of Task A</h2>
 https://drive.google.com/file/d/1LubEIIj4XqJNrnmC7V0QV53Cat0dhYcQ/view?usp=drive_link
