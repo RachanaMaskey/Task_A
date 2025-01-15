@@ -30,4 +30,4 @@ The gradient background and smooth transitions make the UI appealing.
 
 
 <h2>Link of demo video of Task A</h2>
-https://drive.google.com/file/d/1LubEIIj4XqJNrnmC7V0QV53Cat0dhYcQ/view?usp=drive_link
+https://drive.google.com/file/d/1LubEIIj4XqJNrnmC7V0QV53Cat0dhYcQ/view?usp=sharing
