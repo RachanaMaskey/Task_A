@@ -4,8 +4,11 @@ https://github.com/RachanaMaskey/Task_A.git
 <h2>Technology choices</h2>
 
 -HTML
+
 -CSS
+
 -Javascript
+
 -Swiper.js Library
 
 <h2>Rationale</h2>
