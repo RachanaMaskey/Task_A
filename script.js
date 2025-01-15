@@ -1,60 +1,35 @@
-const gallery = document.getElementById('gallery');
-let isDragging = false;
-let startY;
-let scrollTop;
-
-// Adjust scaling based on image position
-function adjustImageSizes() {
-    const images = document.querySelectorAll('.gallery div img');
-    const galleryCenter = gallery.offsetHeight / 2;
-
-    images.forEach((img) => {
-        const imgRect = img.getBoundingClientRect();
-        const imgCenter = imgRect.top + imgRect.height / 2;
-        const distance = Math.abs(galleryCenter - imgCenter);
-
-        if (distance < imgRect.height) {
-            img.classList.add('active');
-            img.classList.remove('small');
-        } else {
-            img.classList.add('small');
-            img.classList.remove('active');
+var swiper=new Swiper(".swiper",{
+    effect:"coverflow",
+    grabCursor:true,
+    centeredSlides:true,
+    coverflowEffect: {
+        rotate: 0,
+        stretch: 0,
+        depth: 100,
+        modifier: 4,
+        slideShadows: true 
+    },
+    loop:true,
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev"
+    },
+    keyboard: {
+        enabled: true
+    },
+    mousewheel: {
+        thresholDelta: 70
+    },
+    breakpoints: {
+        0: {
+            slidesPerView: 2.5
+        },
+        768: {
+            slidesPerView: 3
+        },
+        1024: {
+            slidesPerView: 3
         }
-    });
-}
+    }
 
-// Dragging functionality for the carousel
-gallery.addEventListener('mousedown', (e) => {
-    isDragging = true;
-    startY = e.pageY - gallery.offsetTop;
-    scrollTop = gallery.scrollTop;
-    gallery.style.cursor = 'grabbing';
 });
-
-gallery.addEventListener('mouseleave', () => {
-    isDragging = false;
-    gallery.style.cursor = 'grab';
-});
-
-gallery.addEventListener('mouseup', () => {
-    isDragging = false;
-    gallery.style.cursor = 'grab';
-});
-
-gallery.addEventListener('mousemove', (e) => {
-    if (!isDragging) return;
-
-    e.preventDefault();
-    const y = e.pageY - gallery.offsetTop;
-    const distance = (y - startY) * 2; // Adjust scrolling speed
-    gallery.scrollTop = scrollTop - distance;
-    adjustImageSizes();
-});
-
-// Adjust image sizes on scroll
-gallery.addEventListener('scroll', () => {
-    adjustImageSizes();
-});
-
-// Initial adjustment
-adjustImageSizes();
